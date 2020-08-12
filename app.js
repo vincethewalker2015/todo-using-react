@@ -76,7 +76,8 @@ var Todo = function (_React$Component) {
           React.createElement("input", { type: "checkbox", checked: this.state.done,
             onClick: this.handleClick }),
           React.createElement("input", { type: "text", value: this.state.text,
-            onChange: this.handleChange,
+            className: this.state.done ? 'done' : "" // Class used for CSS Styling
+            , onChange: this.handleChange,
             onBlur: this.handleSubmit })
         )
       );
@@ -97,19 +98,19 @@ var TodoList = function (_React$Component2) {
 
     _this2.state = { todos: [{
         _id: 'a',
-        text: 'Item 1',
+        text: 'Milk',
         done: true
       }, {
         _id: 'b',
-        text: 'Item 2',
+        text: '',
         done: false
       }, {
         _id: 'c',
-        text: 'Item 3',
+        text: '',
         done: false
       }, {
         _id: 'd',
-        text: 'Item 4',
+        text: '',
         done: false
       }]
     };
@@ -149,7 +150,7 @@ var TodoList = function (_React$Component2) {
         todolist,
         React.createElement(
           "a",
-          { href: "#", onClick: this.newTodo },
+          { href: "#", onClick: this.newTodo, "class": "pure-button" },
           "Add Item"
         ),
         " "

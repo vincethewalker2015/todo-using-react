@@ -51,6 +51,7 @@ class Todo extends React.Component {
           <input type="checkbox" checked={this.state.done} 
                                  onClick={this.handleClick} /> 
           <input type="text" value={this.state.text} 
+                             className={(this.state.done)? 'done': ""}  // Class used for CSS Styling
                              onChange={this.handleChange} 
                              onBlur={this.handleSubmit}/>
         </span>
@@ -65,25 +66,25 @@ class TodoList extends React.Component {   // Displays TodoList
     this.state = { todos: [
                             {
                               _id: 'a',
-                              text: 'Item 1',
+                              text: 'Milk',
                               done: true
                             },
 
                             {
                               _id: 'b',
-                              text: 'Item 2',
+                              text: '',
                               done: false
                             },
 
                             {
                               _id: 'c',
-                              text: 'Item 3',
+                              text: '',
                               done: false
                             },
 
                             {
                               _id: 'd',
-                              text: 'Item 4',
+                              text: '',
                               done: false
                             },
                           ] 
@@ -110,7 +111,7 @@ class TodoList extends React.Component {   // Displays TodoList
       return <React.Fragment > 
                 <h1>React Shopping List App</h1>
                 {todolist}
-                <a href="#" onClick={this.newTodo}>Add Item</a> {/* This links to a new Item */}
+                <a href="#" onClick={this.newTodo} class="pure-button" >Add Item</a> {/* This links to a new Item */}
             </React.Fragment>
     }
 }
