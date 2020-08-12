@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
+
+body {
+  font-family: 'Baloo Tamma 2', cursive;
+  text-align: center;
+  
+}
+
+
+.todo {
+  font-family: 'Baloo Tamma 2', cursive;
+  background: #eee;
+  margin: 5px auto;
+  padding: 10px;
+  text-align: left;
+  width: 20%;
+}
+
+.todo input {
+  font-family: 'Baloo Tamma 2', cursive;
+  background: #eee;
+  border: 0;
+  font-size: 1.25vw;
+  padding: 5px;
+}
+
+.todo .done { /* Styling to create a strike through the item if checked */
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.pure-button, a {
+  font-family: 'Baloo Tamma 2', cursive;
+  font-weight: bold;
+  background-color: #0066ff;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+}
