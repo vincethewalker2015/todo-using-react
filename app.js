@@ -14,25 +14,58 @@ var Todo = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).call(this, props));
 
-    _this.state = { done: _this.props.done == "true" && props.done,
+    _this.state = { done: props.done,
       text: props.text };
 
-    _this.handleClick = _this.handleClick.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this); // To Change the state of the Checkbox
+    _this.handleChange = _this.handleChange.bind(_this); // To Change the Text of the Input
+    _this.handleSubmit = _this.handleSubmit.bind(_this); // Saves changes in the Input
     return _this;
   }
+
+  // handleClick(event) {             To Change the state of the Checkbox
+  //   this.setState(state => ({
+  //     done: !state.done
+  //   }));
+  // }
 
   _createClass(Todo, [{
     key: "handleClick",
     value: function handleClick(event) {
+      // To Change the state of the Checkbox as well as the update (Amended from the one above..)
       this.setState(function (state) {
         return {
           done: !state.done
         };
+      }, function (event) {
+        this.handleSubmit(event);
       });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      // To Change the Text of the Input
+      var text = event.target.value;
+
+      this.setState(function (state) {
+        return {
+          text: text
+        };
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      // Saves changes in the Input
+
+      // this.setState(state => ({
+      console.log("This is where the submit will happen");
+      // }));
     }
   }, {
     key: "render",
     value: function render() {
+      // onBlur = when you click away from the input
 
       return React.createElement(
         "div",
@@ -40,8 +73,11 @@ var Todo = function (_React$Component) {
         React.createElement(
           "span",
           null,
-          React.createElement("input", { type: "checkbox", checked: this.state.done, onClick: this.handleClick }),
-          React.createElement("input", { type: "text", value: this.state.text })
+          React.createElement("input", { type: "checkbox", checked: this.state.done,
+            onClick: this.handleClick }),
+          React.createElement("input", { type: "text", value: this.state.text,
+            onChange: this.handleChange,
+            onBlur: this.handleSubmit })
         )
       );
     }
@@ -50,4 +86,78 @@ var Todo = function (_React$Component) {
   return Todo;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Todo, { text: "Todo 1", done: "true" }), document.getElementById('root'));
+var TodoList = function (_React$Component2) {
+  _inherits(TodoList, _React$Component2);
+
+  // Displays TodoList
+  function TodoList(props) {
+    _classCallCheck(this, TodoList);
+
+    var _this2 = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
+
+    _this2.state = { todos: [{
+        _id: 'a',
+        text: 'Item 1',
+        done: true
+      }, {
+        _id: 'b',
+        text: 'Item 2',
+        done: false
+      }, {
+        _id: 'c',
+        text: 'Item 3',
+        done: false
+      }, {
+        _id: 'd',
+        text: 'Item 4',
+        done: false
+      }]
+    };
+    _this2.newTodo = _this2.newTodo.bind(_this2); // For creation of new Todo
+    return _this2;
+  }
+
+  _createClass(TodoList, [{
+    key: "newTodo",
+    value: function newTodo(event) {
+      event.preventDefault();
+
+      todos = this.state.todos;
+      todos.push({ _id: "" });
+
+      this.setState(function (state) {
+        return {
+          todos: todos
+        };
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var todolist = this.state.todos.map(function (todo) {
+        return React.createElement(Todo, { key: todo._id.toString(), text: todo.text, done: todo.done });
+      });
+
+      return React.createElement(
+        React.Fragment,
+        null,
+        React.createElement(
+          "h1",
+          null,
+          "React Shopping List App"
+        ),
+        todolist,
+        React.createElement(
+          "a",
+          { href: "#", onClick: this.newTodo },
+          "Add Item"
+        ),
+        " "
+      );
+    }
+  }]);
+
+  return TodoList;
+}(React.Component);
+
+ReactDOM.render(React.createElement(TodoList, null), document.getElementById('root'));
